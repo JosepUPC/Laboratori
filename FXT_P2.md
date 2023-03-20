@@ -4,11 +4,23 @@
 ### Exercisis 3.1 ###
 *Aquests exercisis tracten del Linux filesystem i els seus permisos de sistema*
 
-1. Obre una terminal i explora el deu directori *home* (tecleja *cd ~* o simplement *cd*). Llavors, tecleja el tipus de comandament que utilitzant una ruta relativa cambii la teva localització a la del directori /etc.
+1. Obre una terminal i explora el teu directori *home* (tecleja *cd ~* o simplement *cd*). Llavors, tecleja el tipus de comandament que utilitzant una ruta relativa cambii la teva localització a la del directori /etc.
+
+        $ cd ~
+
+        $ pwd
+
+        $ ls /
+
+        $ ../../../etc
 
 2. Tecleja el comandament per tornar la directori *Home* utilitzant la ruta absoluta. 
 
+        $ c/Users/98esq/
+
 3. Una vegada en el teu directori *home*, tecleja el comandament per copiar el archius /etc/passpwd en el teu directori de treball utilitzant unicament les rutes relatives.
+
+        $ cp ../../../etc/passpwd passpwdCopy
 
 4. Crea 6 directoris que s'anomenin: dirA1, dirA2, dirB1, dirB2, dirC1 i dirC2 dintre del teu directori *home*. Tu pots fer-ho amb els següents comandaments:
 
@@ -22,19 +34,39 @@ O utilitzant la funionalitat anomenada "brace expansion":
 $ mkdir dir{A,B,C}{1,2}
 ```
 
-5. Elinina els directoris dirC2 i dirC1 utilitzant la clau "?". 
+5. Elinina els directoris dirC2 i dirC1 utilitzant la clau "?".
+
+        $ rmdir ~/dirC?
 
 6. Crea un archiu buit en el teu directori de treball que s'anomeni *temp*.
 
+        $ touch temp.txt
+
 8. Tecleja el comandament per veure text per mostrar el contingut del archiu, que obiament esta buit. 
+
+        $ cat temp.txt
 
 9. Tecleja el comandament per mostrar les dades i propietats del archiu (data de creació, data de modificació, última data d'accés, inode, etc.).
 
+        $ stat temp.txt
+
 10. Cambia el teu directori de treball. Des de allí, tecleja el comandament per a probar de copiar el archiu *temp* al directori /usr. Que és lo que pasa i perquè?
+
+        $ mkdir exercise10
+        $ cd exercise10
+        $ cp ../temp.txt c/usr/tempCopy.txt
 
 11. Crea un directori que s'anomeni *practices* dintre del *home*. Dintre de *practices*, crea dos directoris mes que s'anomenin *with_permission* i *without_permission*. LLavors, borra el teu propi permis d'escriptura en el directori *without_permission*. 
 
+        $ cd ~
+        $ mkdir practices
+        $ cd practices
+        $ mkdir with_permission, without_permission
+        $ chmod u-w /without_permission
+
 12. Intenta copiar el archiu *temp* als dos directoris anteriors. Explica que es lo que succeeix en cada cas i perquè?
+
+        & cp temp.txt with_permission/tempCopy.txt, without_permission/tempCopy.txt
 
 13. Adivina quin es el mínim nivell permes que te el propietari (llegir, escriure, executar) per a poder executar els següents comandaments: 
 
@@ -43,6 +75,8 @@ $ mkdir dir{A,B,C}{1,2}
 |cd without_permission||||
 |cd without_permission; ls -l||||
 |cp temp ~/practices/without_permission||||
+
+        $ ls -l ./practices
 
 ### Exercisis 3.2 ###
 *Aquests execisis representen pràctiques sobre archius de text i archius especials*
