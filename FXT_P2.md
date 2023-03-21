@@ -14,13 +14,20 @@
 
         $ ../../../etc
 
+![Ss1](Ss1.png)
+
 2. Tecleja el comandament per tornar la directori *Home* utilitzant la ruta absoluta. 
 
-        $ c/Users/98esq/
+        $ cd ~
 
-3. Una vegada en el teu directori *home*, tecleja el comandament per copiar el archius /etc/passpwd en el teu directori de treball utilitzant unicament les rutes relatives.
+![Ss2](Ss2.png)
 
-        $ cp ../../../etc/passpwd passpwdCopy
+3. Una vegada en el teu directori *home*, tecleja el comandament per copiar el archius /etc/passwd en el teu directori de treball utilitzant unicament les rutes relatives.
+
+        $ cp ../../../etc/passwd passwdCopy
+
+![Ss3](Ss3.png)
+
 
 4. Crea 6 directoris que s'anomenin: dirA1, dirA2, dirB1, dirB2, dirC1 i dirC2 dintre del teu directori *home*. Tu pots fer-ho amb els següents comandaments:
 
@@ -34,27 +41,46 @@ O utilitzant la funionalitat anomenada "brace expansion":
 $ mkdir dir{A,B,C}{1,2}
 ```
 
+![Ss4](Ss4.png)
+
 5. Elinina els directoris dirC2 i dirC1 utilitzant la clau "?".
 
         $ rmdir ~/dirC?
+        $ rmdir ~/dirC[1 2]
+
+![Ss5](Ss5.png)
 
 6. Crea un archiu buit en el teu directori de treball que s'anomeni *temp*.
 
         $ touch temp.txt
 
-8. Tecleja el comandament per veure text per mostrar el contingut del archiu, que obiament esta buit. 
+![Ss6](Ss6.png)
+
+7. Tecleja el comandament per veure text que mostri el contingut del archiu, que obiament esta buit. 
 
         $ cat temp.txt
 
-9. Tecleja el comandament per mostrar les dades i propietats del archiu (data de creació, data de modificació, última data d'accés, inode, etc.).
+![Ss7](Ss7.png)
+
+8. Tecleja el comandament per mostrar les dades i propietats del archiu (data de creació, data de modificació, última data d'accés, inode, etc.).
 
         $ stat temp.txt
+
+![Ss8](Ss8.png)
+
+9. Quin tipus de contingut es mostra en el archiu *temp*? Quin tipus d'archiu bàsic és?
+
+> El tipus d'archiu temp.txt es un "Regular Empty File" de format ".txt".
 
 10. Cambia el teu directori de treball. Des de allí, tecleja el comandament per a probar de copiar el archiu *temp* al directori /usr. Que és lo que pasa i perquè?
 
         $ mkdir exercise10
         $ cd exercise10
         $ cp ../temp.txt c/usr/tempCopy.txt
+
+> El proces no s'arriba a executar, perque no tenim permisos per a escriure un archiu del directori *home* des del directori creat per el nostre usuari.
+
+![Ss10](Ss10.png)
 
 11. Crea un directori que s'anomeni *practices* dintre del *home*. Dintre de *practices*, crea dos directoris mes que s'anomenin *with_permission* i *without_permission*. LLavors, borra el teu propi permis d'escriptura en el directori *without_permission*. 
 
@@ -64,19 +90,25 @@ $ mkdir dir{A,B,C}{1,2}
         $ mkdir with_permission, without_permission
         $ chmod u-w /without_permission
 
+![Ss11](Ss11.png)
+
 12. Intenta copiar el archiu *temp* als dos directoris anteriors. Explica que es lo que succeeix en cada cas i perquè?
 
         & cp temp.txt with_permission/tempCopy.txt, without_permission/tempCopy.txt
+
+![Ss12](Ss12.png)
 
 13. Adivina quin es el mínim nivell permes que te el propietari (llegir, escriure, executar) per a poder executar els següents comandaments: 
 
 |Commands|read|write|execute|
 |:-:|:-:|:-:|:-:|
-|cd without_permission||||
-|cd without_permission; ls -l||||
-|cp temp ~/practices/without_permission||||
+|cd without_permission|||+|
+|cd without_permission; ls -l|+|||
+|cp temp ~/practices/without_permission||+||
 
         $ ls -l ./practices
+
+![Ss13](Ss13.png)
 
 ### Exercisis 3.2 ###
 *Aquests execisis representen pràctiques sobre archius de text i archius especials*
