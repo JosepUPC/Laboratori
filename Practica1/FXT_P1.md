@@ -131,10 +131,29 @@ $ sleep && sleep --help || ls || ps
 ### Exercisis 2.2 ###
 *Aquests exercisis tracten amb aspectes adicionals sobre procesos*
 
-1. Crea un script que demani per un numero i retorni el numero multiplicat per 7. Nota: si utlitzes la variable VAR per a llegir, pots utlitzar $[VAR * 7] per retornar el multiplicat.
+1. Crea un script que demani per un numero -i retorni el numero multiplicat per 7. Nota: si utlitzes la variable VAR per a llegir, pots utlitzar $[VAR * 7] per retornar el multiplicat.
+
+![picture 18](P1_sc1_2.png)
+
+                $ # write a number, return it multiplied by 7.
+                $ echo Can you give me a number?
+                $ declare -i VAR
+                $ read VAR
+                $ echo your number multiplied by 7 is $[VAR*7]
+
 
 2. Afegeix una señal administrativa al script anterior que quan la señal USR1 es rebuda, el script imprimeixi la frase "esperant operador".
 
 **Consell: Utilitza** *trap* **per a conseguir la USR1 i** *kill -USR1 PID* **per a enviar aquesta señal.**
 
+                $ #!/bin/bash
+                $ trap "kill -USR1 $$" USR1
+                $ echo waiting operand
+                $ echo Can you give me a number?
+                $ declare -i VAR
+                $ read VAR
+                $ echo your number multiplied by 7 is $[VAR*7]
+
 3. Tecleja el comandament per a executar l'aplicació *xeyes* de fondo amb un "niceness" (prioritat) equivalent a 18. Llavors, tecleja el comandament per a veure el comandament, el PID i la prioritat del proces *xeyes* que acabes d'executat.
+
+![picture 19](P1_sc2_2.png)
