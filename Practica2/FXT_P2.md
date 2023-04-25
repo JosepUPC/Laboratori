@@ -119,29 +119,48 @@ $ mkdir dir{A,B,C}{1,2}
         $ ln -s orig.txt link.txt
         $ vi orig.txt
         
-        "fer servir 'i' per insetar el contingut i despres ESC per sortir del mode d'insersió"
+        "fer servir 'i' per insetar el contingut i despres ESC per sortir del mode d'insersió. Surt del archiu amb el comandament ':wp' per tal de guardar-lo"
+
+![Ss1](S2s1.png)
 
 2. Utilitza el comandament *cat* per veure el link.txt. Que es lo que pots veure? Perquè?
 
         $ cat link.txt
 
-3. Repeteix els pasos anterior pero aquesta vegada modifica primer el archiu link.txt i llavors observa el archiu org.txt. Comenta el resultat.
+> Puc veure el contingut que he escrit en el archiu original *orig.txt*. Perque l'archiu *link.txt* es per ell un enllaç.
+
+![Ss2](S2s2.png)
+
+3. Repeteix els pasos anterior pero aquesta vegada modifica primer el archiu link.txt i llavors observa el archiu orig.txt. Comenta el resultat.
+
+>El resultat acaba sent exactament el mateix
+
+![Ss3](S2s3.png)
 
 4. Borra tots els permisos del archiu orig.txt i proba de modificar el archiu link.txt. Que es lo que pasa?
 
         $ chmod 000 orig.txt
         $ vi link.txt
 
-5. Retorna els permisos al archiu orig.txt. Lavaros, proba de borra els permisos escrits en el link.txt. Tecleja *ls -l* i comenta els resultats. 
+> Quan accedeixo al editor a traves del comandament *vi*, puc observar que els permisos d'escriptura m'han sigut denegats. Per corroborar-ho, probo d'escriure un text i a l'hora de guardar-ho, el programa en denega l'acció, unicament amb l'opcio de sortir amb ':q!'
+
+![Ss4](S2s4.png)
+
+5. Retorna els permisos al archiu orig.txt. Llavors, proba de borra els permisos escrits en el link.txt. Tecleja *ls -l* i comenta els resultats. 
 
         $ chmod 777 orig.txt
         $ chmod 000 link.txt
         $ ls -l ~
 
+> S'oberva un fenoment currios. A l'hora d'eliminar els permisos del archiu *link.txt*, s'eliminen els permisos del archiu original, i no el d'aquest. Més extrany es encara, amb l'ajuda del comandament *ls -l* podem veure que els permisos del archiu enllaç *link.txt* segueix tenint permisos. A l'hora de proba de modificar el archiu, no podem, ja que en realitat estem intentat modificar el archiu *orig.txt*. 
+
+![Ss5](S2s5.png)
+
 6. Elimina el archiu orig.txt i proba de mostar el contingut del link.txt amb el comandament *cat*. Llavors, en la terminal (t1) edita orig.txt amb el comandament:
 
         $ rm orig.txt
         $ cat link.txt
+
 ```c
 t1$ vi orig.txt
 ```
@@ -156,23 +175,37 @@ t2$ echo hello > link.txt
 
         $ stat *.txt
 
-8. Ara crea un enllaç dur per la archiu orig.txt que s'anomeni hard.txt. Llavors utilitza el comandament *stat* per adonar-te'n compte que el número de "Enllaços" dels archius orig.txt i hard.txt.
+![Ss7](S2s7.png)
+
+8. Ara crea un enllaç dur per la archiu orig.txt que s'anomeni hard.txt. Llavors utilitza el comandament *stat* per adonar-te'n compte del número de "Enllaços" dels archius orig.txt i hard.txt.
 
         $ ln orig.txt hard.txt
         $ stat orig.txt; stat hard.txt
+
+> En lloc de ser un enllaç tou, passar a ser un enllaç dur. És a dir, queel sistema passa a declarar-lo com un *regular empty file*, el tipus d'archiu similar al d'origen.
+
+![Ss8](S2s8.png)
 
 9. Elimina el ficher orig.txt i proba de modificar amb el comandament *vi* el hard.txt. Que es lo que pasa?
 
         $ rm orig.txt
         $ vi hard.txt
 
-10. Utilitza el comandament *grep* per trobar l'informació sobre el protocol HTTP present en el ficher /etc/services (recorda que esl comandaments Unic son "case-sensitive"). 
+![Ss9](S2s9.png)
+
+> A l'hora d'eliminar el archiu original, el enllaç dur *hard.txt* passar a ser el archiu orginal. És a dir, podriem dir que un enllaç dur es una copia perfecte a temps real. L'enllaç tou es unicament un archiu que guarda la localització del archiu original en el ordinador.
+
+10. Utilitza el comandament *grep* per trobar l'informació sobre el protocol HTTP present en el ficher /etc/services (recorda que esl comandaments Unic son "case-sensitive").
 
         $ grep bash /etc/services
 
+![Ss10](S2s10.png)
+
 11. Utilitxa el comandament *cut* sobre el archiu /etc/group per mostrar el nom de cada grup i els seus membres (últim cap). 
 
-        $ cut -d "." /etc/group
+        $ cut -d ":" -f 1,3 /etc/group
+
+![Ss11](S2s11.png)
 
 12. Crea un archiu buit que s'anomeni text1.txt. Utilitza el editor de text *vi abn* per introduir "abñ" en el archiu, guardar-lo i sortir. Tecleja un comandament per adivinar el tipus de contingut del ficher. 
 
@@ -181,21 +214,33 @@ t2$ echo hello > link.txt
         "Insert abñ"
         $stat text1.txt
 
+![Ss12](S2s12.png)
+
 13. Busca en la Web el codi hexadecimal de la letra "ñ" en la ISO-889-15 i la UTF8. Utilitza el comandament *hexdump* per veure el contingut hexadecimal del archiu text1.txt. Quin tipus de codi t'has trobat?
 
         $ hexdump text1.txt
+
+> El codi en hexadecimal de la lletra *ñ* es 00d1 o be 00D1
+
+![Ss13](S2s13.png)
 
 14. Busca quin caracter és el "0x0a", que ademés apareix en el ficher. 
 
         "consultar taules UTF-8"
 
-15. Obre un *gedit* editor de text i tecleja "abñ". Ves al menú i utlitza l'opció "Save as" per a guardar el archiu amb el nom text2.txt i "Line Ending" de tipus Windows. Altre vegada amb el comandament *hexdump* examina el contingut del archiu. Busca quin tipus de caràcter esta codificat com a "0x0d".
+> el caracter Hexadecimal *0x0a* pertany a la lletra *ñ*.
+
+15. Obre un *gedit* editor de text i tecleja "abñ". Ves al menú i utilitza l'opció "Save as" per a guardar el archiu amb el nom text2.txt i "Line Ending" de tipus Windows. Altre vegada amb el comandament *hexdump* examina el contingut del archiu. Busca quin tipus de caràcter esta codificat com a "0x0d".
 
 ```c
 $ hexdump text2.txt
 0000000 6261 b1c3 0a0d
 0000006
 ```
+
+> El caracter codificat *0a0d* pertany a la lletra *ñ*
+
+![Ss1](S2s1.png)
 
 16. Explica la diferencia entre els tipus de línies de ruptura per Unix (nou Mac), Windows i el Mac clàsic. 
 
