@@ -35,7 +35,7 @@
 $ mkdir dirA1 dirA2 dirB1 dirB2 dirC1 dirC2
 ```
 
-O utilitzant la funionalitat anomenada "brace expansion":
+O utilitzant la funcionalitat anomenada "brace expansion":
 
 ```c
 $ mkdir dir{A,B,C}{1,2}
@@ -43,7 +43,7 @@ $ mkdir dir{A,B,C}{1,2}
 
 ![Ss4](Ss4.png)
 
-5. Elinina els directoris dirC2 i dirC1 utilitzant la clau "?".
+5. Elimina els directoris dirC2 i dirC1 utilitzant la clau "?".
 
         $ rmdir ~/dirC?
         $ rmdir ~/dirC[1 2]
@@ -56,7 +56,7 @@ $ mkdir dir{A,B,C}{1,2}
 
 ![Ss6](Ss6.png)
 
-7. Tecleja el comandament per veure text que mostri el contingut del archiu, que obiament esta buit. 
+7. Tecleja el comandament per veure text que mostri el contingut del archiu, que obiament, esta buit. 
 
         $ cat temp.txt
 
