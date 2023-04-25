@@ -152,7 +152,7 @@ $ mkdir dir{A,B,C}{1,2}
         $ chmod 000 link.txt
         $ ls -l ~
 
-> S'oberva un fenoment currios. A l'hora d'eliminar els permisos del archiu *link.txt*, s'eliminen els permisos del archiu original, i no el d'aquest. Més extrany es encara, amb l'ajuda del comandament *ls -l* podem veure que els permisos del archiu enllaç *link.txt* segueix tenint permisos. A l'hora de proba de modificar el archiu, no podem, ja que en realitat estem intentat modificar el archiu *orig.txt*. 
+> S'observa un fenoment curiós. A l'hora d'eliminar els permisos del archiu *link.txt*, s'eliminen els permisos del archiu original, i no el d'aquest. Més extrany es encara, amb l'ajuda del comandament *ls -l* podem veure que els permisos del archiu enllaç *link.txt* segueix tenint permisos. A l'hora de proba de modificar el archiu, no podem, ja que en realitat estem intentant modificar el archiu *orig.txt*. 
 
 ![Ss5](S2s5.png)
 
@@ -170,6 +170,7 @@ mentre l'editor estigui obert, tecleja el següent codi en un altre terminal (t2
 ```c
 t2$ echo hello > link.txt
 ```
+![Ss6](S2s6.png)
 
 7. Utilitza el comandament *stat* per veure el numero de enllaços del archiu orig.txt i el archiu link.txt que tens.
 
@@ -182,20 +183,20 @@ t2$ echo hello > link.txt
         $ ln orig.txt hard.txt
         $ stat orig.txt; stat hard.txt
 
-> En lloc de ser un enllaç tou, passar a ser un enllaç dur. És a dir, queel sistema passa a declarar-lo com un *regular empty file*, el tipus d'archiu similar al d'origen.
+> En lloc de ser un enllaç tou, passar a ser un enllaç dur. És a dir, que el sistema passa a declarar-lo com un *regular empty file*, el tipus d'archiu es similar al d'origen.
 
 ![Ss8](S2s8.png)
 
-9. Elimina el ficher orig.txt i proba de modificar amb el comandament *vi* el hard.txt. Que es lo que pasa?
+9. Elimina el fitxer orig.txt i proba de modificar amb el comandament *vi* el hard.txt. Que es lo que pasa?
 
         $ rm orig.txt
         $ vi hard.txt
 
 ![Ss9](S2s9.png)
 
-> A l'hora d'eliminar el archiu original, el enllaç dur *hard.txt* passar a ser el archiu orginal. És a dir, podriem dir que un enllaç dur es una copia perfecte a temps real. L'enllaç tou es unicament un archiu que guarda la localització del archiu original en el ordinador.
+> A l'hora d'eliminar el archiu original, el enllaç dur *hard.txt* passa a ser el archiu orginal. És a dir, podriem dir que un enllaç dur es una copia a temps real. L'enllaç tou es unicament un archiu que guarda la localització de l'archiu original en l'ordinador.
 
-10. Utilitza el comandament *grep* per trobar l'informació sobre el protocol HTTP present en el ficher /etc/services (recorda que esl comandaments Unic son "case-sensitive").
+10. Utilitza el comandament *grep* per trobar l'informació sobre el protocol HTTP present en el fitxer /etc/services (recorda que esl comandaments Unic son "case-sensitive").
 
         $ grep bash /etc/services
 
@@ -240,8 +241,18 @@ $ hexdump text2.txt
 
 > El caracter codificat *0a0d* pertany a la lletra *ñ*
 
-![Ss1](S2s1.png)
+![Ss15](S2s15.png)
 
 16. Explica la diferencia entre els tipus de línies de ruptura per Unix (nou Mac), Windows i el Mac clàsic. 
 
+> CR+LF: Micosoft Windows y la major part dels sistemes antics que no fan servir UNIX
+> LF+CR: Acorn BBC 
+> CR: Commodore 8-bit, Acorn BBC, TRS-80, Apple II, Mac OS fins a la versió 9 i OS-9.
+> LF: Multics, Unix i sistemes tipus Unix (GNU/Linux, AIX, Xenix, Mac OS X, FreeBSD, etc.), BeOS, Amiga,
+RISC OS, Android i altres.
+
 17. Obre un editor de text *gedit* i tecleja "abñ". Ves al menú i utlitza l'opció "Save as" per a guardar el archiu amb el nom text3.txt i "character Encoding" ISO-8859-15. Revisa el contingut del archiu de text amb el comandament *hexdump* i comenta el resultat. 
+
+![Ss17](S2s17.png)
+
+No reconeix l'ultim símbol ("ñ") ja que el model ISO-8859-15 (Western) no el fa servir.
